@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Akram Fisichella — ePortfolio BUT R&amp;T</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --night: #0A1628;
+    --navy: #1E3A5F;
+    --cyan: #00C9A7;
+    --cyan-dim: rgba(0,201,167,0.15);
+    --cyan-glow: rgba(0,201,167,0.4);
+    --light: #F0F4F8;
+    --muted: #8BA0B8;
+    --white: #FFFFFF;
+    --card-bg: #0F1E33;
+    --border: rgba(255,255,255,0.07);
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+    --nav-w: 240px;
+    --radius: 8px;
+    --transition: 0.25s ease;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--night);
+    color: var(--light);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    display: flex;
+  }
+
+  /* ── NAV LATÉRALE ── */
+  nav#sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--nav-w);
+    height: 100vh;
+    background: var(--card-bg);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.25rem;
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cyan);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo span { display: block; font-size: 1rem; color: var(--white); margin-top: 0.25rem; }
+
+  nav#sidebar ul { list-style: none; flex: 1; }
+  nav#sidebar ul li { margin-bottom: 0.25rem; }
+  nav#sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius);
+    transition: color var(--transition), background var(--transition);
+  }
+  nav#sidebar ul li a:hover,
+  nav#sidebar ul li a.active {
+    color: var(--white);
+    background: var(--cyan-dim);
+  }
+  nav#sidebar ul li a .icon { font-size: 0.9rem; width: 1.1rem; text-align: center; }
+
+  .nav-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    line-height: 1.6;
+  }
+
+  /* ── MAIN ── */
+  main {
+    margin-left: var(--nav-w);
+    flex: 1;
+    min-height: 100vh;
+  }
+
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  /* ── TYPOGRAPHY ── */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 0.75rem;
+  }
+
+  h1, h2, h3 { font-family: var(--font-mono); font-weight: 700; line-height: 1.25; }
+  h1 { font-size: clamp(2rem, 4vw, 3rem); color: var(--white); }
+  h2 { font-size: 1.5rem; color: var(--white); margin-bottom: 2rem; }
+  h3 { font-size: 1rem; color: var(--cyan); margin-bottom: 0.5rem; }
+
+  p { color: var(--light); margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── HERO ── */
+  #accueil {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 3rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .typing-container {
+    font-family: var(--font-mono);
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    min-height: 3.5rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.1em;
+    background: var(--cyan);
+    margin-left: 3px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero-desc {
+    font-size: 0.97rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition);
+    cursor: pointer;
+    border: none;
+    font-family: var(--font-body);
+  }
+
+  .btn-primary {
+    background: var(--cyan);
+    color: var(--night);
+  }
+  .btn-primary:hover { background: #00e8c0; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--light);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--cyan);
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .about-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .about-card h3 { font-size: 0.8rem; margin-bottom: 0.75rem; }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+  .tag {
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    font-size: 0.72rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── COMPÉTENCES ── */
+  .skills-group { margin-bottom: 2.5rem; }
+  .skills-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .skills-group-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--navy);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+    transition: border-left-color var(--transition), box-shadow var(--transition);
+    cursor: default;
+  }
+  .skill-card:hover {
+    border-left-color: var(--cyan);
+    box-shadow: 0 0 0 1px var(--cyan-dim), 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .skill-name {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .skill-ref {
+    font-size: 0.65rem;
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+  }
+  .skill-desc { font-size: 0.82rem; color: var(--muted); }
+
+  /* ── PROJETS ── */
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+
+  .project-header {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background var(--transition);
+  }
+  .project-header:hover { background: rgba(255,255,255,0.02); }
+
+  .project-title-group { flex: 1; }
+  .project-title {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .project-meta {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .expand-icon {
+    color: var(--muted);
+    font-size: 1rem;
+    transition: transform var(--transition);
+    flex-shrink: 0;
+  }
+  .project-card.open .expand-icon { transform: rotate(180deg); }
+
+  .project-body {
+    display: none;
+    padding: 0 1.5rem 1.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+  }
+  .project-card.open .project-body { display: block; }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-block { }
+  .project-block-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 0.4rem;
+  }
+  .project-block p, .project-block li {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .project-block ul { padding-left: 1rem; }
+  .project-block li { margin-bottom: 0.2rem; }
+
+  .placeholder {
+    color: var(--muted);
+    font-style: italic;
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .proof-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+  .proof-item {
+    font-size: 0.72rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+  }
+
+  /* ── JOURNAL ── */
+  .journal-entry {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .journal-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cyan);
+    margin-bottom: 0.75rem;
+  }
+
+  .journal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .journal-block-title {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+  .journal-block p { font-size: 0.82rem; color: var(--light); margin-bottom: 0; }
+
+  /* ── TIMELINE PARCOURS ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.4rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--cyan), var(--navy));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid var(--cyan);
+  }
+
+  .timeline-period {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--cyan);
+    margin-bottom: 0.2rem;
+  }
+  .timeline-title {
+    font-weight: 600;
+    color: var(--white);
+    font-size: 0.95rem;
+    margin-bottom: 0.15rem;
+  }
+  .timeline-where {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .timeline-desc { font-size: 0.83rem; color: var(--muted); }
+
+  /* ── PREUVES ── */
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .proof-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: center;
+  }
+  .proof-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .proof-card-title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--white);
+    margin-bottom: 0.35rem;
+  }
+  .proof-card-ref { font-size: 0.72rem; color: var(--cyan); }
+
+  /* ── RETOUR D'EXP ── */
+  .retour-block {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .retour-block h3 { font-size: 0.8rem; margin-bottom: 0.5rem; color: var(--cyan); }
+  .retour-block p { font-size: 0.88rem; color: var(--light); margin-bottom: 0; }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; margin-top: 1rem; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--light);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--navy);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--cyan);
+    cursor: pointer;
+    transition: border-color var(--transition);
+  }
+  .check-box:hover { border-color: var(--cyan); }
+  .check-box.done { background: var(--cyan-dim); border-color: var(--cyan); }
+
+  /* ── CONTACT ── */
+  .contact-note {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  .contact-note p { color: var(--muted); font-size: 0.85rem; }
+
+  /* ── QUESTIONS ── */
+  .question-block {
+    background: rgba(255,193,7,0.06);
+    border: 1px solid rgba(255,193,7,0.2);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .question-block p {
+    font-size: 0.85rem;
+    color: #FFD54F;
+    margin-bottom: 0;
+  }
+  .question-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: rgba(255,213,79,0.6);
+    margin-bottom: 0.3rem;
+  }
+
+
+  .source-note, .mentor-note {
+    background: rgba(0,201,167,0.06);
+    border: 1px solid rgba(0,201,167,0.18);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    color: var(--muted);
+    font-size: 0.84rem;
+    margin: 1.25rem 0;
+  }
+  .project-card.featured { border-color: rgba(0,201,167,0.25); }
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: .9rem;
+    margin: 1.25rem 0;
+  }
+  .mini-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+  }
+  .mini-card strong {
+    display: block;
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    margin-bottom: .35rem;
+  }
+  .mini-card span {
+    color: var(--muted);
+    font-size: .78rem;
+  }
+  .project-badge {
+    display:inline-flex;
+    align-items:center;
+    gap:.25rem;
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    border-radius: 999px;
+    padding: .15rem .55rem;
+    font-family: var(--font-mono);
+    font-size: .66rem;
+    margin-right: .35rem;
+    margin-bottom: .35rem;
+  }
+  .proof-status {
+    display:inline-block;
+    font-family: var(--font-mono);
+    font-size:.66rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .15rem .55rem;
+    margin-left:.25rem;
+  }
+  .warning-soft {
+    background: rgba(255,193,7,0.06);
+    border: 1px solid rgba(255,193,7,0.18);
+    color: #FFD54F;
+    border-radius: var(--radius);
+    padding: .8rem 1rem;
+    font-size:.82rem;
+    margin: 1rem 0;
+  }
+
+
+  .english-note {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+    margin-top: 1rem;
+  }
+  .english-note p {
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.7;
+  }
+  .english-note .project-block-title::after {
+    content: "  / EN";
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ── MOBILE ── */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 200;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--white);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger { display: block; }
+    nav#sidebar {
+      transform: translateX(-100%);
+      transition: transform var(--transition);
+    }
+    nav#sidebar.open { transform: translateX(0); }
+    main { margin-left: 0; }
+    section { padding: 4rem 1.25rem; }
+    .about-grid, .project-grid, .journal-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+
+  /* ── ARBORESCENCE ── */
+  .tree {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    line-height: 2;
+  }
+  .tree .dir { color: var(--cyan); }
+  .tree .file { color: var(--light); }
+  .tree .comment { color: rgba(255,255,255,0.2); font-size: 0.72rem; }
+
+  /* divider */
+  .divider {
+    width: 2rem;
+    height: 2px;
+    background: var(--cyan);
+    margin-bottom: 2rem;
+  }
+
+
+  /* ── THÈME CLAIR + PREUVES INTÉGRÉES ── */
+  body.light-theme {
+    --night: #F6F8FB;
+    --navy: #D8E3EF;
+    --cyan: #007F73;
+    --cyan-dim: rgba(0,127,115,0.10);
+    --cyan-glow: rgba(0,127,115,0.20);
+    --light: #1F2937;
+    --muted: #52657A;
+    --white: #0F172A;
+    --card-bg: #FFFFFF;
+    --border: rgba(15,23,42,0.12);
+  }
+
+  .theme-toggle {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+    background: var(--cyan-dim); color: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: .65rem .75rem; margin: -1.25rem 0 1.5rem;
+    font-family: var(--font-mono); font-size: .72rem; cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  }
+  .theme-toggle:hover { border-color: var(--cyan); transform: translateY(-1px); }
+  .theme-toggle .toggle-pill { width: 38px; height: 20px; border-radius: 999px; background: var(--card-bg); border: 1px solid var(--border); position: relative; flex-shrink: 0; }
+  .theme-toggle .toggle-pill::after { content: ''; width: 14px; height: 14px; border-radius: 50%; background: var(--cyan); position: absolute; top: 2px; left: 3px; transition: left var(--transition); }
+  body.light-theme .theme-toggle .toggle-pill::after { left: 19px; }
+
+  .evidence-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.2rem 0 1.4rem; }
+  .evidence-card { background: rgba(255,255,255,0.035); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition); }
+  .evidence-card:hover { transform: translateY(-2px); border-color: var(--cyan); box-shadow: 0 10px 26px rgba(0,0,0,.22); }
+  .evidence-card img { width: 100%; height: 150px; object-fit: cover; display: block; background: var(--white); }
+  .evidence-card.doc { padding: 1rem; display: flex; flex-direction: column; gap: .7rem; justify-content: space-between; min-height: 170px; }
+  .evidence-caption { padding: .85rem .9rem 1rem; }
+  .evidence-caption strong, .evidence-card.doc strong { display: block; color: var(--white); font-family: var(--font-mono); font-size: .78rem; margin-bottom: .25rem; }
+  .evidence-caption span, .evidence-card.doc span { display: block; color: var(--muted); font-size: .75rem; line-height: 1.55; }
+  .evidence-link { color: var(--night); background: var(--cyan); text-decoration: none; border-radius: var(--radius); padding: .5rem .75rem; font-size: .75rem; font-weight: 700; display: inline-flex; justify-content: center; align-items: center; gap: .35rem; width: fit-content; }
+  body.light-theme .evidence-link { color: #FFFFFF; }
+  .contact-actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; margin-top: 1.25rem; }
+  .contact-actions .btn { min-width: 170px; justify-content: center; }
+  .proof-intro { background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--cyan); border-radius: var(--radius); padding: 1rem 1.15rem; color: var(--muted); font-size: .84rem; margin: 1rem 0 1.5rem; }
+</style>
+</head>
+<body>
+<button aria-label="Menu" class="hamburger" onclick="toggleNav()">☰</button>
+<nav id="sidebar">
+<div class="nav-logo">
+    &gt; ePortfolio<br/>
+<span>Akram Fisichella</span>
+</div><button aria-label="Changer le thème" class="theme-toggle" onclick="toggleTheme()" type="button"><span id="theme-label">Mode clair</span><span class="toggle-pill"></span></button>
+<ul>
+<li><a class="active" href="#accueil"><span class="icon">⌂</span> Accueil</a></li>
+<li><a href="#apropos"><span class="icon">◈</span> À propos</a></li>
+<li><a href="#competences"><span class="icon">⬡</span> Compétences</a></li>
+<li><a href="#projets"><span class="icon">◉</span> Projets / SAE</a></li>
+<li><a href="#journal"><span class="icon">▤</span> Journal de bord</a></li>
+<li><a href="#preuves"><span class="icon">◈</span> Preuves</a></li>
+<li><a href="#parcours"><span class="icon">◎</span> Parcours / CV</a></li>
+<li><a href="#retour"><span class="icon">↺</span> Retour d’exp.</a></li>
+
+
+<li><a href="#contact"><span class="icon">✉</span> Contact</a></li>
+</ul>
+<div class="nav-badge">BUT R&amp;T · 2025–2028<br/>Version publique · v1.1</div>
+</nav>
+<main>
+<!-- 1. ACCUEIL -->
+<section id="accueil">
+<p class="hero-sub">Étudiant · BUT Réseaux &amp; Télécommunications</p>
+<div class="typing-container">
+<span id="typed-text"></span><span class="cursor"></span>
+</div>
+<p class="hero-desc">
+    Je m'appelle <strong>Akram Fisichella</strong>. Je développe mes compétences en administration réseau,
+    systèmes Linux, télécommunications et programmation. Ce portfolio présente mon parcours, mes SAE,
+    mes preuves de travail et surtout ma progression en BUT Réseaux &amp; Télécommunications à l’IUT de Colmar.
+  </p>
+<div class="hero-links">
+<a class="btn btn-primary" href="#competences">⬡ Voir mes compétences</a>
+<a class="btn btn-outline" href="#projets">◉ Mes projets / SAE</a>
+<a class="btn btn-outline" href="#parcours">◎ Mon parcours</a>
+<a class="btn btn-outline" href="#preuves">◈ Mes preuves</a>
+<a class="btn btn-outline" href="#contact">✉ Contact</a></div>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">7</div><div class="stat-label">Projets documentés</div></div>
+<div class="stat"><div class="stat-num">3</div><div class="stat-label">Compétences BUT reliées</div></div>
+<div class="stat"><div class="stat-num">10+</div><div class="stat-label">Outils &amp; technos</div></div>
+<div class="stat"><div class="stat-num">2025</div><div class="stat-label">Entrée en BUT R&amp;T</div></div>
+</div>
+<div class="mentor-note">
+    Ce portfolio est construit comme un outil d’apprentissage : il ne présente pas seulement des résultats,
+    il explique aussi les difficultés rencontrées, les méthodes utilisées et les progrès réalisés.
+  </div>
+</section>
+<!-- 2. À PROPOS -->
+<section id="apropos">
+<div class="label">// 02 · À propos de moi</div>
+<h2>Mon identité professionnelle</h2>
+<div class="divider"></div>
+<p>
+    Après mon baccalauréat général, j’ai choisi le BUT Réseaux et Télécommunications parce que je voulais
+    comprendre concrètement comment les équipements, les systèmes et les applications communiquent entre eux.
+    Ce domaine me plaît car il mélange la logique, la pratique, le diagnostic et l’évolution constante des technologies.
+  </p>
+<p>
+    Mon objectif est de progresser vers les métiers de l’administration réseau, de l’infrastructure et de la cybersécurité.
+    Je suis encore en apprentissage, mais je cherche à développer une méthode professionnelle : préparer un plan,
+    configurer, tester, documenter, puis expliquer ce que j’ai fait.
+  </p>
+<p>
+    Mes expériences professionnelles en commerce, hôtellerie et service client m’ont aussi apporté des qualités utiles en R&amp;T :
+    autonomie, ponctualité, adaptation, travail en équipe et capacité à expliquer clairement une situation à une personne non spécialiste.
+  </p>
+<div class="about-grid">
+<div class="about-card">
+<h3>// Langues</h3>
+<div class="tag-list">
+<span class="tag">Italien — natif</span>
+<span class="tag">Français — courant</span>
+<span class="tag">Anglais — C1</span>
+</div>
+</div>
+<div class="about-card">
+<h3>// Qualités</h3>
+<div class="tag-list">
+<span class="tag">Ponctualité</span>
+<span class="tag">Autonomie</span>
+<span class="tag">Sens du contact client</span>
+<span class="tag">Capacité d’adaptation</span>
+</div>
+</div>
+<div class="about-card">
+<h3>// Domaines d’intérêt</h3>
+<div class="tag-list">
+<span class="tag">Réseaux</span>
+<span class="tag">Cybersécurité</span>
+<span class="tag">Linux / Systèmes</span>
+<span class="tag">Infrastructure</span>
+<span class="tag">Automatisation</span>
+</div>
+</div>
+<div class="about-card">
+<h3>// Formation</h3>
+<div class="tag-list">
+<span class="tag">BUT R&amp;T 2025–2028</span>
+<span class="tag">IUT de Colmar</span>
+<span class="tag">Université de Haute‑Alsace</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. COMPÉTENCES -->
+<section id="competences">
+<div class="label">// 03 · Compétences</div>
+<h2>Ce que je sais faire et comment je le prouve</h2>
+<div class="divider"></div>
+<p style="color:var(--muted);font-size:0.85rem;margin-bottom:2rem;">
+    Les compétences sont organisées selon le référentiel du BUT R&amp;T : administrer les réseaux, connecter les entreprises et créer des outils informatiques.
+  </p>
+<div class="skills-group">
+<div class="skills-group-title">🌐 Compétence 1 — Administrer les réseaux et l’Internet</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">VLAN, adressage IP et routage inter‑VLAN</div><span class="skill-ref">AC11.03 / AC11.05</span></div>
+<div class="skill-desc">Je sais segmenter un réseau, préparer un plan d’adressage, affecter des ports à des VLAN et tester la connectivité. Preuves : topologies Packet Tracer/EVE‑NG, configuration Cisco, tests ping.</div>
+</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">DHCP, services réseau et diagnostic</div><span class="skill-ref">AC11.04 / CE1.03</span></div>
+<div class="skill-desc">Je sais mettre en place des services de base et diagnostiquer un problème avec une méthode progressive : poste, adresse IP, passerelle, service, port, pare‑feu.</div>
+</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">Linux Debian et administration système</div><span class="skill-ref">AC11.04 / AC11.06</span></div>
+<div class="skill-desc">Je sais utiliser Debian en ligne de commande, installer des paquets, gérer des services avec systemctl et configurer une machine virtuelle serveur.</div>
+</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">Wireshark et analyse de trafic</div><span class="skill-ref">AC11.05</span></div>
+<div class="skill-desc">Je sais utiliser des captures réseau pour observer des échanges et mieux comprendre ce qui se passe derrière une communication.</div>
+</div>
+</div>
+<div class="skills-group">
+<div class="skills-group-title">📡 Compétence 2 — Connecter les entreprises et les usagers</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">Wi‑Fi : mesure, RSSI et couverture</div><span class="skill-ref">AC12.01 / CE2.02</span></div>
+<div class="skill-desc">Je sais interpréter des mesures Wi‑Fi, comparer des heatmaps et relier la qualité de réception à des critères techniques comme le RSSI, la fréquence ou le chevauchement de canaux.</div>
+</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">Téléphonie IP et SIP</div><span class="skill-ref">AC12.04</span></div>
+<div class="skill-desc">Je sais configurer des clients de téléphonie IP, tester des appels via URI SIP et expliquer les étapes de signalisation.</div>
+</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">Objets connectés et communication réseau</div><span class="skill-ref">CE2.03 / AC13.02</span></div>
+<div class="skill-desc">Avec le projet Web Radio ESP32, j’ai travaillé le lien entre Wi‑Fi, MQTT, programmation embarquée et flux audio.</div>
+</div>
+</div>
+<div class="skills-group">
+<div class="skills-group-title">💻 Compétence 3 — Créer des outils et applications informatiques pour les R&amp;T</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">Python, Bash et automatisation</div><span class="skill-ref">AC13.02 / AC13.03</span></div>
+<div class="skill-desc">Je sais lire, modifier et expliquer du code. J’ai utilisé Python pour analyser des fichiers, générer du JSON et créer une interface, et Bash pour automatiser des tâches système.</div>
+</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">HTML/CSS et architecture web</div><span class="skill-ref">AC13.04</span></div>
+<div class="skill-desc">Je sais structurer une page web, organiser une navigation et construire une interface lisible. Ce portfolio est lui-même une preuve de cette compétence.</div>
+</div>
+<div class="skill-card">
+<div class="skill-header"><div class="skill-name">Django, MariaDB et gestion de données</div><span class="skill-ref">AC13.05</span></div>
+<div class="skill-desc">Avec le projet Albert, j’ai travaillé les modèles, migrations, bases de données, vues CRUD et imports CSV.</div>
+</div>
+</div>
+</section>
+<!-- 4. PROJETS / SAE -->
+<section id="projets">
+<div class="label">// 04 · Projets &amp; SAE</div>
+<h2>Mes situations d’apprentissage</h2>
+<div class="divider"></div>
+<p style="color:var(--muted);font-size:0.85rem;margin-bottom:2rem;">
+    Chaque fiche présente le contexte, les outils, les compétences du référentiel, les difficultés et le retour d’expérience.
+    Clique sur une fiche pour afficher le détail.
+  </p>
+<div class="project-card featured" onclick="toggleProject(this)">
+<div class="project-header">
+<div class="project-title-group">
+<div class="project-title">SAE / Projet — Réseau local segmenté : VLAN, DHCP et routage inter-VLAN</div>
+<div class="project-meta">
+<span>📅 BUT1 · travaux réseau</span><span>🔧 Cisco · Packet Tracer · EVE-NG</span><span>🎯 C1 Administrer</span>
+</div>
+</div>
+<div class="expand-icon">▾</div>
+</div>
+<div class="project-body">
+<div style="margin-bottom:1rem;"><span class="project-badge">VLAN</span><span class="project-badge">DHCP</span><span class="project-badge">Cisco IOS</span><span class="project-badge">Diagnostic réseau</span></div>
+<div class="project-grid">
+<div class="project-block">
+<div class="project-block-title">Contexte</div>
+<p>Travail réalisé dans le cadre des apprentissages de réseau local en BUT R&amp;T. L’objectif était de construire une infrastructure organisée, avec plusieurs réseaux logiques, puis de vérifier que les postes communiquent correctement selon le plan prévu.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Objectif</div>
+<p>Concevoir un plan d’adressage, créer les VLAN, configurer les ports access/trunk, mettre en place le routage inter-VLAN et valider le fonctionnement grâce aux commandes de diagnostic.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Outils &amp; technologies</div>
+<ul><li>Cisco Packet Tracer / EVE-NG</li>
+<li>Switchs et routeurs Cisco</li>
+<li>Adressage IPv4 et sous-réseaux</li>
+<li>VLAN / trunk 802.1Q</li>
+<li>DHCP et relais DHCP</li>
+<li>Commandes show, ping, traceroute</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Compétences BUT mobilisées</div>
+<ul><li>AC11.03 — Configurer les fonctions de base du réseau local</li>
+<li>AC11.05 — Identifier les dysfonctionnements du réseau local</li>
+<li>CE1.03 — Utiliser une approche rigoureuse de résolution de panne</li>
+<li>AC11.06 — Expliquer la procédure mise en place</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Déroulement / étapes clés</div>
+<ul><li>Définition du plan d’adressage et des passerelles</li>
+<li>Création des VLAN et affectation des ports</li>
+<li>Configuration des trunks entre équipements</li>
+<li>Mise en place du routage inter-VLAN sur routeur ou switch L3</li>
+<li>Configuration DHCP / relais DHCP</li>
+<li>Tests de ping entre postes et passerelles, puis correction des erreurs</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Difficultés rencontrées</div>
+<p>Les erreurs les plus formatrices ont été liées aux masques, aux passerelles et aux interfaces qui se chevauchent. Quand une adresse n’est pas dans le bon sous-réseau ou qu’un trunk est mal configuré, le réseau semble “ne rien faire”, alors que le problème est souvent une petite incohérence.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Solutions apportées</div>
+<p>J’ai appris à repartir de la méthode : vérifier l’adresse IP du poste, la passerelle, le VLAN du port, le trunk, puis les interfaces du routeur. Les commandes comme <code>show vlan brief</code>, <code>show ip interface brief</code> et les tests de ping m’ont aidé à isoler les problèmes.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Retour d'expérience</div>
+<p>Ce projet m’a montré que la configuration réseau demande surtout de la rigueur. Une bonne documentation du plan IP évite beaucoup d’erreurs. J’ai aussi compris l’intérêt réel de la segmentation : séparer les usages tout en gardant une infrastructure administrable.</p>
+</div>
+</div>
+<div class="project-block" style="margin-bottom:1rem;">
+<div class="project-block-title">Ce que je referais différemment</div>
+<p>Je préparerais d’abord un tableau propre avec VLAN, réseau, passerelle, plage DHCP et ports associés. Ensuite seulement je passerais à la configuration, pour éviter les corrections de dernière minute.</p>
+</div>
+<div class="project-block"><div class="project-block-title">Preuves visuelles ajoutées</div><div class="evidence-gallery"><div class="evidence-card" onclick="event.stopPropagation()"><img alt="Topologie EVE‑NG — VLAN / DHCP" src="assets/preuves/sae1.02.png"/><div class="evidence-caption"><strong>Topologie EVE‑NG — VLAN / DHCP</strong><span>Preuve de configuration réseau avec postes, switchs, routeur et serveur.</span></div></div><div class="evidence-card" onclick="event.stopPropagation()"><img alt="Architecture réseau par VLAN" src="assets/preuves/sae21.png"/><div class="evidence-caption"><strong>Architecture réseau par VLAN</strong><span>Schéma avec VLAN administration, développement et administrateur, utile pour expliquer le plan réseau.</span></div></div></div></div><div class="project-block english-note">
+<div class="project-block-title">English explanation</div>
+<p>In this project, I learned how to design and configure a segmented local network using VLANs, DHCP and inter-VLAN routing. It helped me understand that troubleshooting must be done step by step: IP address, gateway, VLAN, trunk links and connectivity tests.</p>
+</div>
+</div>
+</div>
+<div class="project-card" onclick="toggleProject(this)">
+<div class="project-header">
+<div class="project-title-group">
+<div class="project-title">Projet — Services réseau sur Debian : Web, FTP, DNS, Syslog, NTP et pare-feu</div>
+<div class="project-meta">
+<span>📅 BUT1 · administration système</span><span>🔧 Debian · VirtualBox · Apache2</span><span>🎯 C1 / C3</span>
+</div>
+</div>
+<div class="expand-icon">▾</div>
+</div>
+<div class="project-body">
+<div style="margin-bottom:1rem;"><span class="project-badge">Linux</span><span class="project-badge">Services réseau</span><span class="project-badge">Sécurité</span><span class="project-badge">Virtualisation</span></div>
+<div class="project-grid">
+<div class="project-block">
+<div class="project-block-title">Contexte</div>
+<p>Dans ce projet, une machine virtuelle Debian sert de base pour déployer des services réseau. Le but est de passer d’une machine installée à un serveur réellement exploitable et vérifiable depuis le réseau.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Objectif</div>
+<p>Installer et configurer des services essentiels : serveur web Apache2, service FTP, résolution DNS, synchronisation NTP, centralisation Syslog et règles de filtrage avec iptables.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Outils &amp; technologies</div>
+<ul><li>Debian / ligne de commande Linux</li>
+<li>VirtualBox</li>
+<li>Apache2</li>
+<li>FTP</li>
+<li>DNS</li>
+<li>Syslog</li>
+<li>NTP</li>
+<li>iptables</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Compétences BUT mobilisées</div>
+<ul><li>AC11.04 — Maîtriser les rôles des systèmes d’exploitation</li>
+<li>AC11.06 — Installer un poste client / serveur et expliquer la procédure</li>
+<li>AC13.01 — Utiliser un système informatique et ses outils</li>
+<li>CE1.02 — Respecter les principes de sécurité informatique</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Déroulement / étapes clés</div>
+<ul><li>Configuration réseau de la VM Debian</li>
+<li>Installation des paquets nécessaires</li>
+<li>Validation d’Apache2 depuis un navigateur</li>
+<li>Configuration et test du FTP</li>
+<li>Vérification de la résolution DNS</li>
+<li>Validation Syslog / NTP</li>
+<li>Ajout de règles iptables et tests de connectivité</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Difficultés rencontrées</div>
+<p>La difficulté principale est de comprendre où se trouve le problème quand un service ne répond pas : service arrêté, mauvaise IP, DNS non fonctionnel, port bloqué ou pare-feu trop restrictif.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Solutions apportées</div>
+<p>J’ai appris à tester par étapes : vérifier l’état du service avec <code>systemctl</code>, contrôler l’adresse IP, tester localement, puis tester depuis une autre machine. Pour le pare-feu, je note les règles appliquées pour pouvoir revenir en arrière.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Retour d'expérience</div>
+<p>Ce projet m’a permis de relier la partie réseau à la partie système. Un serveur ne se limite pas à installer un paquet : il faut vérifier son écoute, son accès réseau, sa sécurité et sa documentation.</p>
+</div>
+</div>
+<div class="project-block" style="margin-bottom:1rem;">
+<div class="project-block-title">Ce que je referais différemment</div>
+<p>Je documenterais chaque service dans un tableau : rôle, port utilisé, fichier de configuration, commande de test et résultat attendu. Cela rendrait la maintenance plus simple.</p>
+</div>
+<div class="project-block english-note">
+<div class="project-block-title">English explanation</div>
+<p>This project helped me understand how a Debian server can provide real network services such as web, FTP, DNS, NTP and logging. I also learned that a working service must be checked from several angles: status, IP configuration, ports, firewall rules and client access.</p>
+</div>
+</div>
+</div>
+<div class="project-card featured" onclick="toggleProject(this)">
+<div class="project-header">
+<div class="project-title-group">
+<div class="project-title">SAE — Application web Albert : gestion de notes avec Django et MariaDB</div>
+<div class="project-meta">
+<span>📅 Projet final · BUT1</span><span>🔧 Django · MariaDB · CSV</span><span>🎯 C3 Créer des outils</span>
+</div>
+</div>
+<div class="expand-icon">▾</div>
+</div>
+<div class="project-body">
+<div style="margin-bottom:1rem;"><span class="project-badge">Python</span><span class="project-badge">Django</span><span class="project-badge">Base de données</span><span class="project-badge">CRUD</span><span class="project-badge">CSV</span></div>
+<div class="project-grid">
+<div class="project-block">
+<div class="project-block-title">Contexte</div>
+<p>Application web de gestion de notes pour des étudiants. Le sujet demandait de gérer plusieurs entités : étudiants, UE, ressources, enseignants, examens et notes, avec une base préparée et une interface permettant l’administration des données.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Objectif</div>
+<p>Créer une application web capable de gérer les entités du sujet, saisir ou importer des notes par CSV, générer un modèle CSV, produire un relevé de notes simple et conserver les données en base.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Outils &amp; technologies</div>
+<ul><li>Python / Django</li>
+<li>MariaDB</li>
+<li>HTML / CSS</li>
+<li>Templates Django</li>
+<li>CSV</li>
+<li>Migrations et seed</li>
+<li>Sauvegarde type mysqldump</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Compétences BUT mobilisées</div>
+<ul><li>AC13.02 — Lire, exécuter, corriger et modifier un programme</li>
+<li>AC13.04 — Connaître l’architecture d’un site Web</li>
+<li>AC13.05 — Choisir les mécanismes de gestion de données</li>
+<li>AC13.06 — S’intégrer dans un environnement de développement</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Déroulement / étapes clés</div>
+<ul><li>Analyse du sujet et identification des entités</li>
+<li>Création des modèles Django et relations en base</li>
+<li>Migrations pour créer les tables</li>
+<li>Seed pour insérer des données de départ</li>
+<li>Mise en place des vues CRUD</li>
+<li>Import/export CSV avec le format <code>numero_etudiant;note;appreciation</code></li>
+<li>Création d’un relevé de notes simple</li>
+<li>Préparation de la démo et de la présentation</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Difficultés rencontrées</div>
+<p>Les points les plus délicats ont été les relations entre modèles, les migrations, le seed et la logique d’import CSV. Une petite erreur dans le nom d’un champ ou dans une clé étrangère peut bloquer toute la chaîne.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Solutions apportées</div>
+<p>J’ai séparé le problème en étapes : d’abord les modèles, ensuite les migrations, puis les vues, puis les formulaires et enfin l’import CSV. Pour comprendre le code, je me suis entraîné à expliquer chaque fonction, notamment la génération du template CSV.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Retour d'expérience</div>
+<p>Cette SAE m’a fait comprendre la différence entre écrire du code et construire une application maintenable. J’ai découvert l’importance de l’organisation du projet, des données de test et de la séparation entre modèle, vue et template.</p>
+</div>
+</div>
+<div class="project-block" style="margin-bottom:1rem;">
+<div class="project-block-title">Ce que je referais différemment</div>
+<p>Je commencerais plus tôt par un schéma de base de données propre, puis je préparerais un jeu de données minimal pour tester chaque fonctionnalité avant d’ajouter l’interface.</p>
+</div>
+<div class="project-block"><div class="project-block-title">Preuves visuelles ajoutées</div><div class="evidence-gallery"><div class="evidence-card doc" onclick="event.stopPropagation()"><div><strong>Procédure de déploiement Django</strong><span>Déploiement de l’application avec Nginx, Gunicorn et VM Debian 12.</span></div><a class="evidence-link" download="Fiche_Procedure_sae203.pdf" href="assets/preuves/Fiche_Procedure_sae203.pdf">⬇ Ouvrir le PDF</a></div></div></div><div class="project-block english-note">
+<div class="project-block-title">English explanation</div>
+<p>During this web project, I worked on a Django application used to manage students, exams and grades. I improved my understanding of databases, CRUD features, CSV import/export and deployment with Nginx and Gunicorn on a Debian virtual machine.</p>
+</div>
+</div>
+</div>
+<div class="project-card" onclick="toggleProject(this)">
+<div class="project-header">
+<div class="project-title-group">
+<div class="project-title">SAE — Outil Python d’analyse d’arborescence et suppression contrôlée</div>
+<div class="project-meta">
+<span>📅 BUT1 · programmation</span><span>🔧 Python · JSON · PowerShell · PyQt5</span><span>🎯 C3 Créer des outils</span>
+</div>
+</div>
+<div class="expand-icon">▾</div>
+</div>
+<div class="project-body">
+<div style="margin-bottom:1rem;"><span class="project-badge">Python</span><span class="project-badge">Interface graphique</span><span class="project-badge">Automatisation</span><span class="project-badge">Sécurité</span></div>
+<div class="project-grid">
+<div class="project-block">
+<div class="project-block-title">Contexte</div>
+<p>Projet de développement d’un outil capable d’analyser un dossier, repérer les fichiers volumineux, présenter les résultats et préparer une suppression contrôlée.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Objectif</div>
+<p>Créer un programme modulaire : sélection de répertoire, analyse des fichiers, génération d’un fichier JSON, affichage graphique sous forme de camembert et création d’un script PowerShell de suppression avec double confirmation.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Outils &amp; technologies</div>
+<ul><li>Python</li>
+<li>PyQt5</li>
+<li>JSON</li>
+<li>PowerShell</li>
+<li>Parcours de fichiers avec rglob</li>
+<li>Interface graphique / camembert</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Compétences BUT mobilisées</div>
+<ul><li>AC13.02 — Lire, exécuter, corriger et modifier un programme</li>
+<li>AC13.03 — Traduire un algorithme dans un langage</li>
+<li>AC13.06 — S’intégrer dans un environnement de développement</li>
+<li>CE3.02 — Documenter le travail réalisé</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Déroulement / étapes clés</div>
+<ul><li>Choix du répertoire de départ</li>
+<li>Parcours récursif des fichiers</li>
+<li>Tri décroissant par taille et limitation du nombre d’éléments</li>
+<li>Export des résultats en JSON</li>
+<li>Affichage graphique avec légendes</li>
+<li>Génération d’un script PowerShell avec confirmation</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Difficultés rencontrées</div>
+<p>La difficulté était de garder un code lisible malgré plusieurs modules. Il fallait aussi éviter qu’un outil de suppression soit dangereux : la sécurité de l’utilisateur devait être prise en compte.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Solutions apportées</div>
+<p>J’ai structuré le projet en fichiers séparés et j’ai utilisé un fichier JSON comme format d’échange entre l’analyse et l’affichage. La suppression n’est pas directe : elle passe par un script séparé avec confirmation explicite.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Retour d'expérience</div>
+<p>Ce projet m’a montré que programmer, ce n’est pas seulement obtenir un résultat : il faut penser à l’utilisateur, à la lisibilité du code et aux risques d’une action irréversible.</p>
+</div>
+</div>
+<div class="project-block" style="margin-bottom:1rem;">
+<div class="project-block-title">Ce que je referais différemment</div>
+<p>Je ferais davantage de tests avec des dossiers factices avant de tester sur de vrais fichiers, et j’ajouterais un journal des suppressions pour garder une trace.</p>
+</div>
+<div class="project-block"><div class="project-block-title">Preuves visuelles ajoutées</div><div class="evidence-gallery"><div class="evidence-card" onclick="event.stopPropagation()"><img alt="Interface PyQt5 — résultat d’analyse" src="assets/preuves/sae1.05.png"/><div class="evidence-caption"><strong>Interface PyQt5 — résultat d’analyse</strong><span>Camembert de répartition des fichiers volumineux généré par l’outil Python.</span></div></div></div></div><div class="project-block english-note">
+<div class="project-block-title">English explanation</div>
+<p>This Python project allowed me to create a tool that scans a directory, detects large files and displays the results in a graphical interface. I learned how to split a program into clear modules and how to generate useful data such as JSON files and deletion scripts.</p>
+</div>
+</div>
+</div>
+<div class="project-card" onclick="toggleProject(this)">
+<div class="project-header">
+<div class="project-title-group">
+<div class="project-title">SAE — Étude de couverture Wi‑Fi avec Acrylic</div>
+<div class="project-meta">
+<span>📅 BUT1 · étude radio</span><span>🔧 Acrylic WiFi · Heatmaps</span><span>🎯 C2 Connecter</span>
+</div>
+</div>
+<div class="expand-icon">▾</div>
+</div>
+<div class="project-body">
+<div style="margin-bottom:1rem;"><span class="project-badge">Wi‑Fi</span><span class="project-badge">RSSI</span><span class="project-badge">Mesure</span><span class="project-badge">Analyse</span></div>
+<div class="project-grid">
+<div class="project-block">
+<div class="project-block-title">Contexte</div>
+<p>Étude réalisée sur le réseau Wi‑Fi de l’IUT, notamment dans le bâtiment C et la bibliothèque. Le travail consistait à mesurer la qualité de réception et à analyser la couverture selon les points d’accès.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Objectif</div>
+<p>Cartographier la couverture Wi‑Fi, interpréter les niveaux RSSI, comparer les bandes 2,4 GHz et 5 GHz, repérer les zones moins bien couvertes et comprendre l’impact du chevauchement de canaux.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Outils &amp; technologies</div>
+<ul><li>Acrylic WiFi</li>
+<li>Heatmaps</li>
+<li>Mesures RSSI</li>
+<li>Analyse 2,4 GHz / 5 GHz</li>
+<li>Channel coverage / overlap</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Compétences BUT mobilisées</div>
+<ul><li>AC12.01 — Mesurer, analyser et commenter les signaux</li>
+<li>AC12.03 — Déployer des supports de transmission</li>
+<li>CE2.02 — Faire preuve d’une démarche scientifique</li>
+<li>CE2.03 — Choisir des solutions adaptées</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Déroulement / étapes clés</div>
+<ul><li>Préparation du plan de mesure</li>
+<li>Réalisation du parcours de capture</li>
+<li>Génération de heatmaps globales et par point d’accès</li>
+<li>Analyse des zones fortes/faibles</li>
+<li>Interprétation de la qualité Wi‑Fi et du chevauchement de canaux</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Difficultés rencontrées</div>
+<p>L’interprétation des couleurs et des niveaux RSSI peut prêter à confusion si l’on ne lit pas correctement la légende. Il faut aussi distinguer puissance de réception et qualité réelle de connexion.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Solutions apportées</div>
+<p>J’ai appris à relier une mesure à un contexte : distance à la borne, obstacles, bande utilisée, densité de points d’accès et recouvrement de canaux. J’ai comparé les cartes au lieu de conclure sur une seule mesure.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Retour d'expérience</div>
+<p>Cette SAE m’a aidé à comprendre que le Wi‑Fi n’est pas simplement “ça capte ou ça ne capte pas”. C’est une technologie qui se mesure, s’analyse et se planifie.</p>
+</div>
+</div>
+<div class="project-block" style="margin-bottom:1rem;">
+<div class="project-block-title">Ce que je referais différemment</div>
+<p>Je préparerais un protocole de mesure plus strict avec des points fixes et des captures prises dans les mêmes conditions pour rendre la comparaison plus fiable.</p>
+</div>
+<div class="project-block"><div class="project-block-title">Preuves visuelles ajoutées</div><div class="evidence-gallery"><div class="evidence-card" onclick="event.stopPropagation()"><img alt="Simulation Packet Tracer — Wi‑Fi" src="assets/preuves/sae1.03.webp"/><div class="evidence-caption"><strong>Simulation Packet Tracer — Wi‑Fi</strong><span>Infrastructure avec serveur, routeur, switchs, contrôleur, point d’accès, PC et smartphone.</span></div></div><div class="evidence-card doc" onclick="event.stopPropagation()"><div><strong>Rapport SAE 1.03</strong><span>Compte‑rendu complet : câblage, PoE, mesures 2,4/5 GHz, heatmaps et analyse Wi‑Fi.</span></div><a class="evidence-link" download="SAE_1.03_Rapport.docx" href="assets/preuves/SAE_1.03_Rapport.docx">⬇ Télécharger le DOCX</a></div></div></div><div class="project-block english-note">
+<div class="project-block-title">English explanation</div>
+<p>In this Wi-Fi project, I studied wireless coverage using measurements, heatmaps and Packet Tracer simulation. I learned that 2.4 GHz usually offers better range, while 5 GHz can provide better performance over shorter distances and is more affected by obstacles.</p>
+</div>
+</div>
+</div>
+<div class="project-card" onclick="toggleProject(this)">
+<div class="project-header">
+<div class="project-title-group">
+<div class="project-title">Projet — Web Radio ESP32 avec VS1053, WiFiManager et MQTT</div>
+<div class="project-meta">
+<span>📅 BUT1 · objet connecté</span><span>🔧 ESP32 · VS1053 · MQTT</span><span>🎯 C2 / C3</span>
+</div>
+</div>
+<div class="expand-icon">▾</div>
+</div>
+<div class="project-body">
+<div style="margin-bottom:1rem;"><span class="project-badge">IoT</span><span class="project-badge">MQTT</span><span class="project-badge">Wi‑Fi</span><span class="project-badge">Audio streaming</span></div>
+<div class="project-grid">
+<div class="project-block">
+<div class="project-block-title">Contexte</div>
+<p>Projet autour d’un ESP32 connecté à un module audio VS1053. L’objectif était de réaliser une radio Internet pilotable et configurable sur le réseau.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Objectif</div>
+<p>Connecter l’ESP32 au Wi‑Fi, lire des flux audio en ligne, gérer plusieurs stations, contrôler le volume et recevoir des commandes via MQTT.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Outils &amp; technologies</div>
+<ul><li>ESP32</li>
+<li>VS1053</li>
+<li>WiFiManager</li>
+<li>PubSubClient / MQTT</li>
+<li>Flux MP3 Icecast</li>
+<li>Arduino IDE</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Compétences BUT mobilisées</div>
+<ul><li>AC12.04 — Connecter les systèmes de ToIP / communication</li>
+<li>AC13.02 — Lire et modifier un programme</li>
+<li>AC13.03 — Traduire un algorithme</li>
+<li>CE3.05 — Intégrer les problématiques de sécurité</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Déroulement / étapes clés</div>
+<ul><li>Câblage ESP32 / VS1053</li>
+<li>Configuration Wi‑Fi avec WiFiManager</li>
+<li>Déclaration des stations radio</li>
+<li>Connexion au broker MQTT</li>
+<li>Réception des commandes</li>
+<li>Test du volume et des changements de chaîne</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Difficultés rencontrées</div>
+<p>Quand les commandes MQTT ne produisent aucun effet, le problème peut venir du broker, du topic, de la connexion Wi‑Fi, du callback ou même de la logique du programme.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Solutions apportées</div>
+<p>J’ai appris à isoler le problème : vérifier la connexion Wi‑Fi, tester le broker, contrôler les topics, puis ajouter des messages de debug dans le moniteur série.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Retour d'expérience</div>
+<p>Ce projet m’a fait comprendre le lien entre réseau, programmation embarquée et services applicatifs. Un objet connecté dépend autant du code que de la connectivité.</p>
+</div>
+</div>
+<div class="project-block" style="margin-bottom:1rem;">
+<div class="project-block-title">Ce que je referais différemment</div>
+<p>Je commencerais par tester MQTT seul avec un programme minimal avant d’ajouter la partie audio, pour valider chaque brique séparément.</p>
+</div>
+<div class="project-block english-note">
+<div class="project-block-title">English explanation</div>
+<p>This ESP32 project combined embedded programming, Wi-Fi connection and MQTT communication. It showed me that an IoT device depends on several layers at the same time: hardware wiring, network connectivity, software logic and message exchange with the broker.</p>
+</div>
+</div>
+</div>
+<div class="project-card" onclick="toggleProject(this)">
+<div class="project-header">
+<div class="project-title-group">
+<div class="project-title">Projet — Téléphonie IP : SIP, Linphone et Yealink</div>
+<div class="project-meta">
+<span>📅 BUT1 · ToIP</span><span>🔧 Linphone · Yealink · SIP</span><span>🎯 C2 Connecter</span>
+</div>
+</div>
+<div class="expand-icon">▾</div>
+</div>
+<div class="project-body">
+<div style="margin-bottom:1rem;"><span class="project-badge">SIP</span><span class="project-badge">ToIP</span><span class="project-badge">URI</span><span class="project-badge">Communication</span></div>
+<div class="project-grid">
+<div class="project-block">
+<div class="project-block-title">Contexte</div>
+<p>Mise en place et validation de communications téléphoniques IP entre postes logiciels et téléphone matériel. Le travail inclut l’inscription de comptes SIP et les tests d’appels via URI.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Objectif</div>
+<p>Configurer les comptes SIP, valider la signalisation d’appel, tester l’émission/réception entre PC et téléphone matériel, puis expliquer le rôle des éléments de la chaîne ToIP.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Outils &amp; technologies</div>
+<ul><li>Linphone</li>
+<li>Téléphone Yealink</li>
+<li>Comptes SIP</li>
+<li>URI SIP</li>
+<li>Wireshark pour observer la signalisation</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Compétences BUT mobilisées</div>
+<ul><li>AC12.04 — Connecter les systèmes de ToIP</li>
+<li>AC12.05 — Communiquer avec un tiers et adapter son discours</li>
+<li>CE2.01 — Communiquer avec les acteurs impliqués</li>
+<li>CE2.03 — Choisir les solutions adaptées</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Déroulement / étapes clés</div>
+<ul><li>Création / utilisation des comptes SIP</li>
+<li>Configuration des clients Linphone</li>
+<li>Paramétrage du téléphone Yealink</li>
+<li>Test d’appels PC ↔ téléphone matériel</li>
+<li>Validation de la sonnerie, numérotation et signalisation</li>
+<li>Explication émission/réception d’un message ou appel IP</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Difficultés rencontrées</div>
+<p>La difficulté venait surtout de la différence entre “appel sortant affiché” et “appel réellement reçu”. Le problème peut être un compte mal inscrit, une URI incorrecte ou une mauvaise destination.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Solutions apportées</div>
+<p>J’ai repris les tests dans les deux sens et vérifié chaque compte séparément. J’ai aussi compris qu’un appel IP se valide en regardant la signalisation, pas seulement l’interface utilisateur.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Retour d'expérience</div>
+<p>Ce projet m’a permis de mieux comprendre la ToIP : derrière un appel simple, il y a des comptes, des URI, des serveurs, de la signalisation et des flux médias.</p>
+</div>
+</div>
+<div class="project-block" style="margin-bottom:1rem;">
+<div class="project-block-title">Ce que je referais différemment</div>
+<p>Je ferais un tableau de correspondance compte → appareil → adresse → statut d’inscription pour éviter les confusions pendant les tests.</p>
+</div>
+<div class="project-block english-note">
+<div class="project-block-title">English explanation</div>
+<p>This VoIP project helped me understand how SIP accounts, softphones and hardware phones communicate over the network. I learned that validating a call is not only about hearing a ringtone, but also about checking registration, SIP URIs and signalling.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. JOURNAL DE BORD -->
+<section id="journal">
+<div class="label">// 05 · Journal de bord</div>
+<h2>Suivi de mon apprentissage</h2>
+<div class="divider"></div>
+<p style="color:var(--muted);font-size:0.85rem;margin-bottom:2rem;">
+    Le journal de bord sert à garder une trace des étapes importantes, pas seulement des résultats. Il montre comment je progresse et comment je corrige mes erreurs.
+  </p>
+<div class="journal-entry">
+<div class="journal-date">📅 Séquence réseau — VLAN / DHCP / inter‑VLAN</div>
+<div class="journal-grid">
+<div class="journal-block"><div class="journal-block-title">Tâches réalisées</div><p>Préparation d’un plan d’adressage, configuration de VLAN, ports access/trunk, sous-interfaces et tests de ping.</p></div>
+<div class="journal-block"><div class="journal-block-title">Difficultés</div><p>Erreurs de masque, passerelle ou interface qui empêchaient la communication entre réseaux.</p></div>
+<div class="journal-block"><div class="journal-block-title">Solutions</div><p>Relecture du plan IP, commandes show, tests étape par étape depuis le poste jusqu’au routeur.</p></div>
+<div class="journal-block"><div class="journal-block-title">Preuves</div><p>Topologie, captures de configuration, résultats de ping, schéma d’adressage.</p></div>
+</div>
+<div style="margin-top:1rem;"><div class="journal-block-title">💭 Réflexion personnelle</div><p style="font-size:0.83rem;color:var(--light);">J’ai compris qu’un réseau fonctionne si toutes les petites décisions sont cohérentes : VLAN, port, passerelle, masque et route. La méthode est plus importante que la mémorisation seule.</p></div>
+</div>
+<div class="journal-entry">
+<div class="journal-date">📅 Séquence système — Serveur Debian</div>
+<div class="journal-grid">
+<div class="journal-block"><div class="journal-block-title">Tâches réalisées</div><p>Installation et validation de services : Apache2, FTP, DNS, Syslog, NTP et règles iptables.</p></div>
+<div class="journal-block"><div class="journal-block-title">Difficultés</div><p>Identifier si un problème venait du service, du réseau, du DNS ou du pare‑feu.</p></div>
+<div class="journal-block"><div class="journal-block-title">Solutions</div><p>Tester localement puis à distance, contrôler systemctl, vérifier les ports et noter chaque commande utilisée.</p></div>
+<div class="journal-block"><div class="journal-block-title">Preuves</div><p>Captures terminal, pages web, tests de résolution, règles de filtrage.</p></div>
+</div>
+<div style="margin-top:1rem;"><div class="journal-block-title">💭 Réflexion personnelle</div><p style="font-size:0.83rem;color:var(--light);">Cette partie m’a montré que Linux est au cœur de beaucoup de services réseau. Je dois continuer à pratiquer les commandes pour gagner en rapidité.</p></div>
+</div>
+<div class="journal-entry">
+<div class="journal-date">📅 Projet Albert — Django / MariaDB</div>
+<div class="journal-grid">
+<div class="journal-block"><div class="journal-block-title">Tâches réalisées</div><p>Création des modèles, migrations, seed, pages CRUD, import/export CSV et relevé de notes.</p></div>
+<div class="journal-block"><div class="journal-block-title">Difficultés</div><p>Comprendre les relations entre entités et gérer les données de test correctement.</p></div>
+<div class="journal-block"><div class="journal-block-title">Solutions</div><p>Découper le travail : modèles d’abord, migrations ensuite, puis vues, templates et tests.</p></div>
+<div class="journal-block"><div class="journal-block-title">Preuves</div><p>Captures interface, schéma BDD, extrait de code Django, fichier CSV modèle.</p></div>
+</div>
+<div style="margin-top:1rem;"><div class="journal-block-title">💭 Réflexion personnelle</div><p style="font-size:0.83rem;color:var(--light);">J’ai progressé dans ma capacité à expliquer mon propre code. La partie migrations/seed m’a aidé à comprendre le lien entre le code Django et la base de données réelle.</p></div>
+</div>
+<div class="journal-entry">
+<div class="journal-date">📅 Projet ESP32 — Web Radio / MQTT</div>
+<div class="journal-grid">
+<div class="journal-block"><div class="journal-block-title">Tâches réalisées</div><p>Configuration Wi‑Fi, définition des stations radio, tests MQTT et commandes de volume / chaîne.</p></div>
+<div class="journal-block"><div class="journal-block-title">Difficultés</div><p>Les commandes MQTT ne sont pas toujours reçues si le topic, le broker ou le callback est mal configuré.</p></div>
+<div class="journal-block"><div class="journal-block-title">Solutions</div><p>Tester chaque brique séparément et ajouter des affichages de debug dans le moniteur série.</p></div>
+<div class="journal-block"><div class="journal-block-title">Preuves</div><p>Photo du montage, code ESP32, capture MQTT, vidéo de fonctionnement.</p></div>
+</div>
+<div style="margin-top:1rem;"><div class="journal-block-title">💭 Réflexion personnelle</div><p style="font-size:0.83rem;color:var(--light);">J’ai compris qu’un objet connecté n’est pas seulement de l’électronique : c’est aussi du réseau, des services et du débogage méthodique.</p></div>
+</div>
+</section>
+<!-- 6. PREUVES -->
+<section id="preuves">
+<div class="label">// 06 · Preuves &amp; livrables</div>
+<h2>Mes traces d’apprentissage</h2>
+<div class="divider"></div>
+<p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">
+    Cette section rassemble les preuves principales de mes SAE. Elles montrent des résultats concrets : topologies, captures d’interface, rapports et procédures.
+  </p>
+<div class="proof-intro">
+    Pour chaque preuve, j’essaie de relier le fichier à une compétence : configurer un réseau, analyser une transmission, documenter une démarche ou développer un outil.
+  </div>
+<div class="evidence-gallery">
+<div class="evidence-card" onclick="event.stopPropagation()"><img alt="SAE réseau — topologie EVE‑NG" src="assets/preuves/sae1.02.png"/><div class="evidence-caption"><strong>SAE réseau — topologie EVE‑NG</strong><span>C1 : configuration réseau, VLAN, DHCP, routeur et serveur.</span></div></div><div class="evidence-card" onclick="event.stopPropagation()"><img alt="Architecture VLAN — projet réseau" src="assets/preuves/sae21.png"/><div class="evidence-caption"><strong>Architecture VLAN — projet réseau</strong><span>C1 : organisation d’un réseau en zones fonctionnelles.</span></div></div><div class="evidence-card" onclick="event.stopPropagation()"><img alt="SAE Python — interface graphique" src="assets/preuves/sae1.05.png"/><div class="evidence-caption"><strong>SAE Python — interface graphique</strong><span>C3 : outil d’analyse d’arborescence et visualisation des fichiers.</span></div></div><div class="evidence-card" onclick="event.stopPropagation()"><img alt="SAE Wi‑Fi — simulation Packet Tracer" src="assets/preuves/sae1.03.webp"/><div class="evidence-caption"><strong>SAE Wi‑Fi — simulation Packet Tracer</strong><span>C2 : connexion des usagers, point d’accès et infrastructure sans fil.</span></div></div><div class="evidence-card doc" onclick="event.stopPropagation()"><div><strong>Procédure SAE 2.03 — Django</strong><span>C3 : déploiement d’une application web avec Nginx et Gunicorn.</span></div><a class="evidence-link" download="Fiche_Procedure_sae203.pdf" href="assets/preuves/Fiche_Procedure_sae203.pdf">⬇ Ouvrir le PDF</a></div><div class="evidence-card doc" onclick="event.stopPropagation()"><div><strong>Rapport SAE 1.03 — Wi‑Fi</strong><span>C2 : mesures, heatmaps, PoE et analyse de couverture Wi‑Fi.</span></div><a class="evidence-link" download="SAE_1.03_Rapport.docx" href="assets/preuves/SAE_1.03_Rapport.docx">⬇ Télécharger le DOCX</a></div>
+</div>
+</section>
+<!-- 7. PARCOURS / CV -->
+<section id="parcours">
+<div class="label">// 07 · Parcours</div>
+<h2>Mon itinéraire</h2>
+<div class="divider"></div>
+<div class="skills-group-title" style="margin-bottom:1.5rem;">🎓 Formation</div>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-period">2025 → 2028</div>
+<div class="timeline-title">BUT Réseaux &amp; Télécommunications</div>
+<div class="timeline-where">IUT de Colmar · Université de Haute‑Alsace</div>
+<div class="timeline-desc">Formation orientée réseau, systèmes, télécommunications et programmation. Les travaux réalisés me permettent de développer une méthode : analyser le besoin, configurer, tester, diagnostiquer et documenter.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-period">Avant 2025</div>
+<div class="timeline-title">Baccalauréat général — mention assez bien</div>
+<div class="timeline-where">Lycée Camille Sée</div>
+<div class="timeline-desc">Ce parcours m’a donné les bases scientifiques et la méthode de travail nécessaires pour aborder une formation technique comme le BUT R&amp;T.</div>
+</div>
+</div>
+<div class="skills-group-title" style="margin-top:2.5rem;margin-bottom:1.5rem;">💼 Expériences professionnelles</div>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-period">Actuel · CDI étudiant</div>
+<div class="timeline-title">Employé commercial</div>
+<div class="timeline-where">Aldi · Bennwihr</div>
+<div class="timeline-desc">Accueil et conseil client, respect des procédures, travail en équipe dans un environnement exigeant. Cette expérience renforce mon organisation et ma capacité à garder une attitude professionnelle.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-period">Été 2024 · CDD</div>
+<div class="timeline-title">Employé polyvalent</div>
+<div class="timeline-where">Ibis Budget · Colmar</div>
+<div class="timeline-desc">Accueil, orientation et assistance des clients pendant leur séjour. Cette expérience a renforcé mon sens du service, mon autonomie et ma communication, notamment avec des interlocuteurs variés.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-period">Décembre 2021 et 2023</div>
+<div class="timeline-title">Employé polyvalent</div>
+<div class="timeline-where">Point GSM · Colmar</div>
+<div class="timeline-desc">Assistance et conseil pour des problèmes techniques mobiles, opérations de transfert d’argent et encaissement. Cette expérience m’a appris à vulgariser un problème technique pour un client.</div>
+</div>
+</div>
+</section>
+<!-- 8. RETOUR D'EXPÉRIENCE -->
+<section id="retour">
+<div class="label">// 08 · Retour d'expérience</div>
+<h2>Ce que le BUT R&amp;T m’apprend</h2>
+<div class="divider"></div>
+<div class="retour-block">
+<h3>Ce que j’ai appris jusqu’ici</h3>
+<p>J’ai compris que les réseaux ne se limitent pas à brancher des équipements. Il faut prévoir un plan, respecter une logique d’adressage, configurer correctement les équipements, tester et documenter. J’ai aussi découvert l’importance de Linux, car beaucoup de services réseau reposent sur des serveurs administrés en ligne de commande.</p>
+</div>
+<div class="retour-block">
+<h3>Compétences renforcées</h3>
+<p>J’ai renforcé mes bases en VLAN, DHCP, Cisco, Linux Debian, virtualisation, analyse Wi‑Fi, ToIP et programmation. Je progresse aussi dans l’explication de mon travail, ce qui est essentiel pour une soutenance ou un futur poste en informatique.</p>
+</div>
+<div class="retour-block">
+<h3>Difficultés rencontrées</h3>
+<p>Mes principales difficultés ont été la rigueur dans l’adressage IP, la compréhension des erreurs réseau invisibles au premier regard, la gestion des migrations/seed en Django et le débogage des communications MQTT sur ESP32.</p>
+</div>
+<div class="retour-block">
+<h3>Comment j’ai progressé</h3>
+<p>Je progresse en reprenant les problèmes étape par étape : je vérifie d’abord la configuration la plus simple, puis je remonte vers les éléments plus complexes. Je m’appuie aussi sur mes captures, mes notes, mes commandes et mes schémas pour comprendre au lieu de seulement retenir.</p>
+</div>
+<div class="retour-block">
+<h3>Objectifs pour la suite</h3>
+<p>À court terme, je veux consolider mes bases de BUT1 et être capable d’expliquer clairement mes projets. À moyen terme, je veux approfondir l’administration réseau, Linux et la cybersécurité. À long terme, je souhaite m’orienter vers l’infrastructure réseau, la cybersécurité ou l’administration systèmes et réseaux.</p>
+</div>
+</section>
+<!-- 9. ARBORESCENCE -->
+
+<!-- 10. CHECKLIST -->
+
+<!-- 11. CONTACT -->
+<section id="contact">
+<div class="label">// 09 · Contact</div>
+<h2>Me contacter</h2>
+<div class="divider"></div>
+<div class="contact-note">
+<p><strong>Akram Fisichella</strong> — Étudiant en BUT Réseaux &amp; Télécommunications à l’IUT de Colmar.</p>
+<p>Je suis intéressé par l’administration réseau, les systèmes Linux, l’infrastructure et la cybersécurité. Ce portfolio présente mes projets, mes preuves et ma progression.</p>
+<div class="contact-actions">
+<a class="btn btn-primary" href="mailto:fisichellaakram@gmail.com">✉ M’envoyer un mail</a>
+<a class="btn btn-outline" href="https://github.com/akramfch" rel="noopener noreferrer" target="_blank">GitHub · akramfch</a>
+</div>
+</div>
+</section>
+</main>
+<script>
+  // Typing animation
+  const phrases = [
+    "Étudiant en Réseaux & Télécom.",
+    "J'administre des réseaux.",
+    "Je configure des services Linux.",
+    "Je développe avec Python et Django.",
+    "Je documente mes apprentissages."
+  ];
+  let pi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typed-text');
+
+  function type() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+    }
+    setTimeout(type, deleting ? 40 : 60);
+  }
+  type();
+
+  // Project accordion
+  function toggleProject(card) {
+    card.classList.toggle('open');
+  }
+
+  // Nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // Mobile nav
+  function toggleNav() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+  document.getElementById('sidebar').querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('open');
+    });
+  });
+
+  // Checklist
+  function toggle(box) {
+    event.stopPropagation();
+    box.classList.toggle('done');
+    box.textContent = box.classList.contains('done') ? '✓' : '';
+  }
+
+
+  // Theme switch
+  function applyTheme(theme) {
+    const isLight = theme === 'light';
+    document.body.classList.toggle('light-theme', isLight);
+    const label = document.getElementById('theme-label');
+    if (label) label.textContent = isLight ? 'Mode sombre' : 'Mode clair';
+  }
+
+  function toggleTheme() {
+    const current = document.body.classList.contains('light-theme') ? 'dark' : 'light';
+    localStorage.setItem('akram-portfolio-theme', current);
+    applyTheme(current);
+  }
+
+  applyTheme(localStorage.getItem('akram-portfolio-theme') || 'dark');
+</script>
+</body>
+</html>
