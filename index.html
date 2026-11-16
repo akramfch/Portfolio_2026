@@ -817,7 +817,7 @@
 <a class="btn btn-outline" href="#preuves">◈ Mes preuves</a>
 <a class="btn btn-outline" href="#contact">✉ Contact</a></div>
 <div class="hero-stats">
-<div class="stat"><div class="stat-num">7</div><div class="stat-label">Projets documentés</div></div>
+<div class="stat"><div class="stat-num">8</div><div class="stat-label">Projets documentés</div></div>
 <div class="stat"><div class="stat-num">3</div><div class="stat-label">Compétences BUT reliées</div></div>
 <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Outils &amp; technos</div></div>
 <div class="stat"><div class="stat-num">2025</div><div class="stat-label">Entrée en BUT R&amp;T</div></div>
@@ -951,6 +951,80 @@
     Chaque fiche présente le contexte, les outils, les compétences du référentiel, les difficultés et le retour d’expérience.
     Clique sur une fiche pour afficher le détail.
   </p>
+<div class="project-card" onclick="toggleProject(this)">
+<div class="project-header">
+<div class="project-title-group">
+<div class="project-title">SAE 3.02 — Carrefour intelligent : simulation et supervision sur deux machines virtuelles</div>
+<div class="project-meta">
+<span>📅 BUT2 · application communicante</span><span>🔧 Python · PyQt6 · Sockets TCP · SQLite · Debian</span><span>🎯 C2 / C3</span>
+</div>
+</div>
+<div class="expand-icon">▾</div>
+</div>
+<div class="project-body">
+<div style="margin-bottom:1rem;"><span class="project-badge">Python</span><span class="project-badge">Sockets TCP</span><span class="project-badge">Interface graphique</span><span class="project-badge">Base de données</span><span class="project-badge">Travail en binôme</span></div>
+<div class="project-grid">
+<div class="project-block">
+<div class="project-block-title">Contexte</div>
+<p>Projet réalisé en binôme : un carrefour à feux automatisé qui détecte les véhicules prioritaires (ambulance, police, pompiers…) et leur donne le passage. L’application est répartie sur deux machines virtuelles Linux qui communiquent par le réseau.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Objectif</div>
+<p>Simuler le carrefour sur la première machine (véhicules, feux, capteur, zone de conflit) et le superviser sur la seconde grâce à une interface graphique animée, des boutons de commande et une base de données de statistiques.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Outils &amp; technologies</div>
+<ul><li>Python 3 : simulation et interface</li>
+<li>PyQt6 : fenêtre de supervision animée</li>
+<li>Sockets TCP et messages JSON entre les deux machines</li>
+<li>Threads pour écouter le réseau sans bloquer l’affichage</li>
+<li>SQLite : états du carrefour et durées de passage des véhicules prioritaires</li>
+<li>Debian sur VirtualBox, venv et requirements.txt</li>
+<li>Git et GitHub</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Compétences mobilisées</div>
+<ul><li>Développer une application client / serveur qui communique par socket</li>
+<li>Découper un programme en modules et gérer plusieurs threads</li>
+<li>Stocker et interroger des données avec SQL</li>
+<li>Déployer une application sur deux machines Linux</li>
+<li>Documenter le travail : cahier des charges, README, bilan et docstrings</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Déroulement / étapes clés</div>
+<ul><li>Cahier des charges avec priorités et estimation du temps</li>
+<li>Simulation : feux, capteur, zone de conflit et modes de fonctionnement (normal, sécurisation, priorité, retour au normal)</li>
+<li>Protocole de communication : la simulation envoie l’état à chaque tour, la supervision renvoie les ordres des boutons</li>
+<li>Interface PyQt6 : routes à deux voies par sens, flèches au sol, feux, gyrophares, animation fluide</li>
+<li>Base SQLite et fenêtre de statistiques</li>
+<li>Tests, puis déploiement sur deux VM Debian à partir d’un fichier ZIP</li></ul>
+</div>
+<div class="project-block">
+<div class="project-block-title">Difficultés rencontrées</div>
+<p>Rendre le mouvement fluide au lieu de véhicules qui sautent de position en position, éviter les superpositions et garder les distances de sécurité, gérer les véhicules prioritaires (dépassement, plusieurs véhicules sur la même entrée, alternance des feux au retour au normal) et déployer sur deux VM Debian (droits sudo, serveur SSH, affichage graphique). Une heure enregistrée en UTC dans la base a aussi demandé de chercher la cause avant de la corriger.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Solutions apportées</div>
+<p>L’interface anime chaque véhicule entre deux positions reçues de la simulation. La simulation teste chaque déplacement avant de l’appliquer pour éviter les contacts. Le déploiement est décrit pas à pas dans le README, avec plusieurs méthodes d’installation et un tableau des problèmes courants. L’horodatage de la base utilise maintenant l’heure locale.</p>
+</div>
+<div class="project-block">
+<div class="project-block-title">Retour d'expérience</div>
+<p>Ce projet m’a appris à faire communiquer deux programmes sur deux machines et à partager le travail avec un binôme grâce à Git. J’ai aussi compris l’importance d’un code simple à expliquer à l’oral, et d’une documentation qu’une autre personne peut suivre pour installer le projet seule. Le temps réel a dépassé le temps prévu, surtout pour l’interface et l’intégration des tests.</p>
+</div>
+</div>
+<div class="project-block" style="margin-bottom:1rem;">
+<div class="project-block-title">Ce que je referais différemment</div>
+<p>J’écrirais des tests automatiques plus tôt pour vérifier les règles de priorité à chaque modification, et je prévoirais plus de temps pour l’interface graphique, qui était la partie la plus nouvelle pour moi.</p>
+</div>
+<div class="project-block" style="margin-bottom:1rem;"><div class="project-block-title">Code source</div>
+<p><a href="https://github.com/Lydia67uha/SAE-3.02" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:underline;" onclick="event.stopPropagation()">github.com/Lydia67uha/SAE-3.02</a> : le code, le README d’installation sur deux VM Debian et les instructions d’utilisation.</p>
+</div>
+<div class="project-block"><div class="project-block-title">Preuves visuelles ajoutées</div><div class="evidence-gallery"><div class="evidence-card" onclick="event.stopPropagation()"><img alt="Supervision du carrefour — fonctionnement normal" src="assets/preuves/sae302_fonctionnement_normal.png"/><div class="evidence-caption"><strong>Supervision — fonctionnement normal</strong><span>Carrefour à deux voies par sens avec flèches au sol, feux, passages piétons et panneau de commandes.</span></div></div><div class="evidence-card" onclick="event.stopPropagation()"><img alt="Supervision du carrefour — mode priorité" src="assets/preuves/sae302_mode_priorite.png"/><div class="evidence-caption"><strong>Mode priorité</strong><span>Un véhicule prioritaire (gyrophare) est détecté : seul son feu est vert, tous les autres sont au rouge.</span></div></div><div class="evidence-card" onclick="event.stopPropagation()"><img alt="Fenêtre de statistiques" src="assets/preuves/sae302_statistiques.png"/><div class="evidence-caption"><strong>Statistiques en base de données</strong><span>Passages des véhicules prioritaires : type, entrée, manoeuvre et durée de passage, lus depuis SQLite.</span></div></div></div></div><div class="project-block english-note">
+<div class="project-block-title">English explanation</div>
+<p>In this team project, we built an automated crossroads split across two Linux virtual machines. One machine runs the traffic simulation and the other a PyQt6 supervision interface, connected by a TCP socket. When an emergency vehicle is detected, only its lane gets a green light. I learned to design a client/server application, handle threads, store results in a SQLite database and write documentation that lets other people deploy the project on their own.</p>
+</div>
+</div>
+</div>
 <div class="project-card featured" onclick="toggleProject(this)">
 <div class="project-header">
 <div class="project-title-group">
